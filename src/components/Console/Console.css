@@ -22,6 +22,7 @@
 
 .console__drag:active {
     cursor: col-resize;
+    min-width: 10px;
 }
 
 .console__item {
