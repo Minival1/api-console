@@ -26,8 +26,8 @@
 }
 
 .login-form__label_error input {
-    border: 1px solid #CF2C00;
-    outline: #CF2C00;
+    border: 1px solid #CF2C00 !important;
+    outline: #CF2C00 !important;
     box-shadow: 0 0 5px rgba(207, 44, 0, 0.5);
     color: #CF2C00;
 }

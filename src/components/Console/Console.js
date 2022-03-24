@@ -16,29 +16,22 @@ const Console = () => {
         result: "",
         error: false
     })
-
-    const executingRequest = useSelector(state => state.history.executingRequest)
-
-    const [width, setWidth] = useState({
+    const [consoleWidth, setConsoleWidth] = useState({
         requestField: "100%",
         responseField: "100%"
     })
 
+    const executingRequest = useSelector(state => state.history.executingRequest)
     const dispatch = useDispatch()
 
     useEffect(() => {
         if (executingRequest !== null) {
-            const jsonStr = JSON.parse(executingRequest)
-            formik.setFieldValue("request", jsonStr, true)
+            formik.setFieldValue("request", executingRequest, true)
 
             setTimeout(formik.submitForm)
             dispatch(clearExecuteRequest())
         }
     }, [executingRequest])
-
-    const move = (e) => {
-        console.log(e.pageX)
-    }
 
     const formik = useFormik({
         initialValues: {
@@ -46,7 +39,7 @@ const Console = () => {
         },
         validationSchema: Yup.object({
             request: Yup.string().test(
-                "json",
+                "isJson",
                 "error",
                 (value) => {
                     try {
@@ -73,7 +66,7 @@ const Console = () => {
                         error: false
                     })
                     dispatch(addToHistory({
-                        request: JSON.stringify(data.request, null, 2),
+                        request: data.request,
                         actionName: JSON.parse(data.request)["action"],
                         status: "success"
                     }))
@@ -83,7 +76,7 @@ const Console = () => {
                         error: true
                     })
                     dispatch(addToHistory({
-                        request: JSON.stringify(data.request, null, 2),
+                        request: data.request,
                         actionName: JSON.parse(data.request)["action"],
                         status: "failed"
                     }))
@@ -92,6 +85,33 @@ const Console = () => {
         validateOnChange: false,
         validateOnBlur: false
     })
+
+    const mouseMoveHandler = (e) => {
+        moveConsoles(e.pageX);
+    }
+    const moveConsoles = (coordX) => {
+        const requestFieldWidth = coordX + "px";
+        const responseFieldWidth = document.body.clientWidth - coordX + "px";
+        setConsoleWidth({
+            responseField: responseFieldWidth,
+            requestField: requestFieldWidth,
+        });
+    }
+    const dragHandler = () => {
+        document.addEventListener("mousemove", mouseMoveHandler);
+
+        document.addEventListener("mouseup", (e) => {
+            localStorage.setItem("console_width", parseInt(e.pageX));
+            document.removeEventListener("mousemove", mouseMoveHandler);
+        });
+    }
+
+    useEffect(() => {
+        const width = localStorage.getItem("console_width");
+        if (width) {
+            moveConsoles(width);
+        }
+    }, []);
 
     const formatHandler = () => {
         const reqStr = formik.values.request
@@ -105,16 +125,16 @@ const Console = () => {
     return (
         <form className="console" onSubmit={formik.handleSubmit}>
             <div className="console__body">
-                <div style={{width: width.requestField}} className={classNames("console__item", "console__item_request", {
+                <div style={{width: consoleWidth.requestField}} className={classNames("console__item", "console__item_request", {
                     "console__error": formik.errors.request
                 })}>
                     <p className="console__name">Запрос:</p>
                     <textarea name="request" value={formik.values.request} onChange={formik.handleChange} />
                 </div>
-                <div className="console__drag" onMouseDown={move}>
+                <div className="console__drag" onMouseDown={dragHandler}>
                     <DragIcon/>
                 </div>
-                <div style={{width: width.responseField}} className={classNames("console__item", "console__item_result", {
+                <div style={{width: consoleWidth.responseField}} className={classNames("console__item", "console__item_result", {
                     "console__error": response.error
                 })}>
                     <p className="console__name">Ответ:</p>
@@ -123,7 +143,7 @@ const Console = () => {
             </div>
             <div className="console__footer">
                 <Button className="console__footer-btn" type="submit">Отправить</Button>
-                <p className="console__footer-link">@link-to-your-github</p>
+                <a href="#" className="console__footer-link">@link-to-your-github</a>
                 <button type="button" className="console__footer-format" onClick={formatHandler}>
                     <FormatterIcon/>
                     <span>Форматировать</span>
