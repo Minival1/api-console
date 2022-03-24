@@ -25,6 +25,10 @@
     min-width: 10px;
 }
 
+.console__drag:active {
+    cursor: col-resize;
+}
+
 .console__item {
     width: 50%;
 }
