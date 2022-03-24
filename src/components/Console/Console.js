@@ -86,6 +86,13 @@ const Console = () => {
         validateOnBlur: false
     })
 
+    useEffect(() => {
+        const width = localStorage.getItem("console_width");
+        if (width) {
+            moveConsoles(width);
+        }
+    }, []);
+
     const mouseMoveHandler = (e) => {
         moveConsoles(e.pageX);
     }
@@ -101,17 +108,11 @@ const Console = () => {
         document.addEventListener("mousemove", mouseMoveHandler);
 
         document.addEventListener("mouseup", (e) => {
-            localStorage.setItem("console_width", parseInt(e.pageX));
             document.removeEventListener("mousemove", mouseMoveHandler);
-        });
-    }
 
-    useEffect(() => {
-        const width = localStorage.getItem("console_width");
-        if (width) {
-            moveConsoles(width);
-        }
-    }, []);
+            localStorage.setItem("console_width", parseInt(e.pageX));
+        }, { once: true });
+    }
 
     const formatHandler = () => {
         const reqStr = formik.values.request
