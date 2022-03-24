@@ -1,15 +1,28 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {ReactComponent as ClearIcon} from "../../images/close.svg";
 
 import "./HistoryRequests.css";
-import {clearHistory} from "../../slices/historySlice";
+import {addToHistory, clearHistory} from "../../slices/historySlice";
 import RequestItem from "./RequestItem/RequestItem";
 
 const HistoryRequests = () => {
     const requests = useSelector(state => state.history.requests)
 
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        if (requests.length !== 0) {
+            localStorage.setItem("requests", JSON.stringify(requests))
+        }
+    }, [requests])
+
+    useEffect(() => {
+        const savedRequests = JSON.parse(localStorage.getItem("requests")) || []
+        if (savedRequests.length !== 0) {
+            dispatch(addToHistory(savedRequests))
+        }
+    }, [])
 
     const clearHandler = () => {
         dispatch(clearHistory())

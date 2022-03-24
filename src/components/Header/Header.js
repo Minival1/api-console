@@ -70,9 +70,9 @@ const Header = () => {
                 Выйти
                 <LogoutIcon/>
             </div>
-            <div className="header__fullscreen" onClick={fullscreenHandler}>
+            <button className="header__fullscreen" onClick={fullscreenHandler}>
                 {fullscreenState ? <DisableFullscreenIcon /> : <EnableFullscreenIcon />}
-            </div>
+            </button>
         </div>
     );
 };

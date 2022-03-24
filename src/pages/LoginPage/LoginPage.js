@@ -9,8 +9,8 @@ const LoginPage = () => {
         <div className="login">
             <LogoIcon />
             <Login />
-            <a href="https://github.com/Minival1" className="login__link">
-                https://github.com/Minival1
+            <a href="#" className="login__link">
+                @link-to-your-github
             </a>
         </div>
     );
