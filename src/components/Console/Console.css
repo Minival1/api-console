@@ -16,8 +16,12 @@
     align-items: center;
     flex-grow: 1;
     justify-content: center;
-    cursor: col-resize;
+    cursor: pointer;
     min-width: 10px;
+}
+
+.console__drag:active {
+    cursor: col-resize;
 }
 
 .console__item {
@@ -64,6 +68,7 @@
 
 .console__footer-link {
     color: #999999;
+    text-decoration: none;
 }
 
 .console__footer-format {
