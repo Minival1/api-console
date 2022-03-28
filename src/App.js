@@ -1,12 +1,11 @@
 import React, {useEffect} from 'react';
 import {Routes, Route, useNavigate} from "react-router-dom";
-import LoginPage from "./pages/LoginPage/LoginPage";
-import MainPage from "./pages/MainPage/MainPage";
+import LoginPage from "pages/LoginPage/LoginPage";
+import MainPage from "pages/MainPage/MainPage";
 import {useDispatch} from "react-redux";
 import Sendsay from "sendsay-api";
-
-import './App.css';
-import {loginReducer, logoutReducer} from "./slices/authSlice";
+import {loginReducer, logoutReducer} from "slices/authSlice";
+import 'App.css';
 
 function App() {
     const dispatch = useDispatch()

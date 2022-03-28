@@ -1,15 +1,15 @@
 import React, {useState} from 'react';
-import Input from "../Input/Input";
-import Button from "../Button/Button";
-import { ReactComponent as ErrorIcon } from "../../images/meh.svg";
-import { ReactComponent as LoaderIcon } from "../../images/loader.svg";
+import Input from "components/Input/Input";
+import Button from "components/Button/Button";
+import { ReactComponent as ErrorIcon } from "images/meh.svg";
+import { ReactComponent as LoaderIcon } from "images/loader.svg";
 import { useFormik } from 'formik';
-import { loginReducer } from "../../slices/authSlice";
+import { loginReducer } from "slices/authSlice";
 import Sendsay from "sendsay-api";
 import * as Yup from 'yup';
 import classNames from "classnames";
 
-import "./Login.css";
+import "components/Login/Login.css";
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 

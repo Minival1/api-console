@@ -1,8 +1,8 @@
 import React, {useEffect, useRef, useState} from 'react';
 import classNames from "classnames";
-import {ReactComponent as DotsIcon} from "../../../images/dots.svg";
-import Dropdown from "../../Dropdown/Dropdown";
-import {deleteRequest, executeRequest} from "../../../slices/historySlice";
+import {ReactComponent as DotsIcon} from "images/dots.svg";
+import Dropdown from "components/Dropdown/Dropdown";
+import {deleteRequest, executeRequest} from "slices/historySlice";
 import {useDispatch} from "react-redux";
 
 const RequestItem = ({req, itemId}) => {

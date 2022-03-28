@@ -1,6 +1,6 @@
 import React from 'react';
 
-import "./Dropdown.css";
+import "components/Dropdown/Dropdown.css";
 
 const Dropdown = ({itemId, copyRequest, deleteRequest, sendRequest, closeDropdown, ...props}) => {
 

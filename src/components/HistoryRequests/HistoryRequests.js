@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {ReactComponent as ClearIcon} from "../../images/close.svg";
+import {ReactComponent as ClearIcon} from "images/close.svg";
 
-import "./HistoryRequests.css";
-import {addToHistory, clearHistory} from "../../slices/historySlice";
-import RequestItem from "./RequestItem/RequestItem";
+import "components/HistoryRequests/HistoryRequests.css";
+import {addToHistory, clearHistory} from "slices/historySlice";
+import RequestItem from "components/HistoryRequests/RequestItem/RequestItem";
 
 const HistoryRequests = () => {
     const requests = useSelector(state => state.history.requests)

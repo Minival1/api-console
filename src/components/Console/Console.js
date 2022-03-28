@@ -1,15 +1,14 @@
 import React, {useEffect, useState} from 'react';
-
-import "./Console.css";
 import {useFormik} from "formik";
 import * as Yup from "yup";
 import Sendsay from "sendsay-api";
-import {addToHistory, clearExecuteRequest} from "../../slices/historySlice";
-import Button from "../Button/Button";
+import {addToHistory, clearExecuteRequest} from "slices/historySlice";
+import Button from "components/Button/Button";
 import {useDispatch, useSelector} from "react-redux";
 import classNames from "classnames";
-import {ReactComponent as FormatterIcon} from "../../images/formatter.svg";
-import {ReactComponent as DragIcon} from "../../images/dots.svg";
+import {ReactComponent as FormatterIcon} from "images/formatter.svg";
+import {ReactComponent as DragIcon} from "images/dots.svg";
+import "components/Console/Console.css";
 
 const Console = () => {
     const [response, setResponse] = useState({

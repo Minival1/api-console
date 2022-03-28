@@ -1,8 +1,8 @@
 import React from 'react';
-import { ReactComponent as LogoIcon } from "../../images/logo.svg";
-import Login from "../../components/Login/Login";
+import { ReactComponent as LogoIcon } from "images/logo.svg";
+import Login from "components/Login/Login";
 
-import "./LoginPage.css";
+import "pages/LoginPage/LoginPage.css";
 
 const LoginPage = () => {
     return (

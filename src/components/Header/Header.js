@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {ReactComponent as LogoIcon} from "../../images/logo.svg";
-import {ReactComponent as LogoutIcon} from "../../images/logout.svg";
-import {ReactComponent as EnableFullscreenIcon} from "../../images/fullscreen-on.svg";
-import {ReactComponent as DisableFullscreenIcon} from "../../images/fullscreen-off.svg";
-import {logoutReducer} from "../../slices/authSlice";
+import {ReactComponent as LogoIcon} from "images/logo.svg";
+import {ReactComponent as LogoutIcon} from "images/logout.svg";
+import {ReactComponent as EnableFullscreenIcon} from "images/fullscreen-on.svg";
+import {ReactComponent as DisableFullscreenIcon} from "images/fullscreen-off.svg";
+import {logoutReducer} from "slices/authSlice";
 import Sendsay from "sendsay-api";
 
-import "./Header.css";
+import "components/Header/Header.css";
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
