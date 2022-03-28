@@ -48,6 +48,7 @@
 .header__logout {
     display: flex;
     cursor: pointer;
+    margin-right: 26px !important;
 }
 
 .header__logout svg {
@@ -57,4 +58,23 @@
 
 .header__fullscreen {
     cursor: pointer;
+    padding: 4px;
+    line-height: 0;
+}
+
+.header__fullscreen svg {
+    stroke: #0D0D0D;
+}
+
+.header__fullscreen:hover, .header__fullscreen:focus {
+    color: #0055FB;
+}
+
+.header__fullscreen:hover svg, .header__fullscreen:focus svg {
+    stroke: #0055FB;
+}
+
+.header__fullscreen:focus {
+    outline: 2px solid rgba(69,165,255, 0.5);
+    border-radius: 7px;
 }
