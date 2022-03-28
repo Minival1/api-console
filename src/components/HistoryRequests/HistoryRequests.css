@@ -69,3 +69,33 @@
     position: absolute;
     pointer-events: none;
 }
+
+.history-requests__copy {
+    position: absolute;
+    background: #F6F6F6;
+    border-radius: 5px;
+    padding: 0 5px;
+    align-items: center;
+    height: 20px;
+    font-size: 12px;
+    line-height: 20px;
+    margin-left: 10px;
+    display: none;
+
+}
+
+.history-requests__copy-anim {
+    animation: copy 0.8s linear;
+    display: flex;
+}
+
+@keyframes copy {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
