@@ -1,0 +1,16 @@
+.login {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login > *:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+.login__link {
+    color: #999999;
+    text-decoration: none;
+}
