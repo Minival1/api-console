@@ -15,7 +15,7 @@ export const historySlice = createSlice({
             }
             // если передается массив, сохранённый в localstorage
             if (Array.isArray(payload)) {
-                state.requests = [...payload, ...state.requests]
+                state.requests = payload
             }
             // если передается объект request
             if (typeof payload === "object" && !Array.isArray(payload)) {
