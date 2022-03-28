@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import classNames from "classnames";
 import {ReactComponent as DotsIcon} from "../../../images/dots.svg";
 import Dropdown from "../../Dropdown/Dropdown";
@@ -8,6 +8,7 @@ import {useDispatch} from "react-redux";
 const RequestItem = ({req, itemId}) => {
     const [activeDropdown, setActiveDropdown] = useState(false)
     const [coords, setCoords] = useState({x: null, y: null})
+    const copyRef = useRef(null)
 
     const dispatch = useDispatch()
 
@@ -16,8 +17,8 @@ const RequestItem = ({req, itemId}) => {
     }
 
     const copyRequest = () => {
-        const str = JSON.parse(req.request)
-        window.navigator.clipboard.writeText(str)
+        window.navigator.clipboard.writeText(req.request)
+        copyRef.current.classList.add("history-requests__copy-anim")
     }
 
     const deleteHandler = () => {
@@ -27,6 +28,12 @@ const RequestItem = ({req, itemId}) => {
     const sendRequest = () => {
         dispatch(executeRequest(req.request))
     }
+
+    useEffect(() => {
+        copyRef.current.addEventListener("animationend", () => {
+            copyRef.current.classList.remove("history-requests__copy-anim")
+        })
+    }, [])
 
     useEffect(() => {
         document.addEventListener("mouseup", closeDropdown)
@@ -61,6 +68,7 @@ const RequestItem = ({req, itemId}) => {
                     "history-requests__item-failed": req.status === "failed",
                 })} />
             <span className="history-requests__item-name">{req.actionName}</span>
+            <span ref={copyRef} className="history-requests__copy">Скопировано</span>
             <DotsIcon/>
             <Dropdown
                 sendRequest={sendRequest}
